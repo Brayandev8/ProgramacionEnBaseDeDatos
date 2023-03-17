@@ -29,3 +29,13 @@ BEGIN
     RETURN dis;
 END
 //
+-- Codigo de la funcion de Brayan --
+delimiter //
+CREATE FUNCTION velocidad (d float, t float) returns float
+deterministic
+BEGIN
+	declare vel float;
+    select d/t into vel;
+    RETURN vel;
+END
+//
