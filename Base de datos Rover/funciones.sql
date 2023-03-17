@@ -62,3 +62,20 @@ begin
 
 end //
 delimiter ;
+-- Codigo de la funcion de Catalina --
+delimiter //
+create function contraseña ( id int, nombre varchar(45), apellido varchar(45)) returns varchar(10)
+deterministic
+begin 
+	declare contraseña varchar(10);
+    select concat(substr(id, 7,3),".",substr(apellido, 1, 2)) into contraseña;
+	return contraseña;
+end//  
+delimiter //
+create function usuario ( id int, nombre varchar(45), apellido varchar(45)) returns varchar(10)
+deterministic
+begin 
+	declare usuario varchar(10);
+    select concat(substr(nombre, 1, 2),"_", substr(apellido, 1, 2),substr(id, 7,3)) into usuario;
+	return usuario;
+end//  
