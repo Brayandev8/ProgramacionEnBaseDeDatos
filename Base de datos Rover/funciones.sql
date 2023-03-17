@@ -19,3 +19,13 @@ BEGIN
     RETURN dias;
 END
 //
+-- Codigo de la funcion de Alejandro --
+delimiter //
+CREATE FUNCTION distancia(x1 float, x2 float, y1 float, y2 float) RETURNS float
+    DETERMINISTIC
+BEGIN
+	declare dis float;
+    select sqrt(power(x2-x1,2)+power(y2-y1,2)) into dis;
+    RETURN dis;
+END
+//
