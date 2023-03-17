@@ -11,33 +11,39 @@ BEGIN
 END//
 -- Codigo de la funcion de Jhonatan --
 delimiter //
-CREATE FUNCTION dias_duracion (inicio date, fin date) returns int
+CREATE FUNCTION dias_duracion () returns float
 deterministic
 BEGIN
-	declare dias int;
-    select timestampdiff(day,inicio,fin) into dias;
-    RETURN dias;
+	declare dd float;
+    set dd = (select timestampdiff(day,temporada_inicio,temporada_final) from clima);
+    RETURN dd;
 END
 //
 -- Codigo de la funcion de Alejandro --
 delimiter //
-CREATE FUNCTION distancia(x1 float, x2 float, y1 float, y2 float) RETURNS float
+CREATE FUNCTION distancia() RETURNS float
     DETERMINISTIC
 BEGIN
-	declare dis float;
-    select sqrt(power(x2-x1,2)+power(y2-y1,2)) into dis;
+	declare x1,x2,y1,y2,dis float;
+    set x1 = (select punto_inicio_x from simulacion);
+    set x2 = (select punto_final_x from simulacion);
+    set y1 = (select punto_inicio_y from simulacion);
+    set y2 = (select punto_final_Y from simulacion);
+    set dis =round(sqrt(power(x2-x1,2)+power(y2-y1,2)),2);
     RETURN dis;
 END
 //
 -- Codigo de la funcion de Brayan --
-delimiter //
-CREATE FUNCTION velocidad (d float, t float) returns float
-deterministic
+DELIMITER //
+CREATE FUNCTION velocidad() RETURNS float
+    DETERMINISTIC
 BEGIN
-	declare vel float;
-    select d/t into vel;
+	DECLARE t, dis, vel FLOAT;
+    set t = (select tiemp_seg from simulacion);
+    SET dis = (select distancia() as distancia);
+    SET vel = ROUND(dis / t,2);
     RETURN vel;
-END
+END;
 //
 -- Codigo de la funcion de Deiver --
 DELIMITER //

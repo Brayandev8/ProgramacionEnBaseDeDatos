@@ -256,6 +256,7 @@ CREATE TABLE `simulacion` (
   `punto_final_x` float DEFAULT NULL,
   `punto_inicio_Y` float DEFAULT NULL,
   `punto_final_Y` float DEFAULT NULL,  
+  `distancia` float DEFAULT NULL,  
   PRIMARY KEY (`id`),
   KEY `usuario__simulacion_idx` (`id_usuario`),
   KEY `rover__simulacion_idx` (`id_rover`),

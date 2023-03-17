@@ -1,8 +1,4 @@
 select contar_terrenos_por_clima(id,id_clima) as terrenos_por_clima
 from terreno
-select dias_duracion(temporada_inicio,temporada_final) as dias_duracion
-from clima
-select distancia(punto_inicio_x,punto_final_x,punto_inicio_Y,punto_final_Y) as distancia
-from simulacion 
-select velocidad(distancia,tiemp_seg) as velocidad
-from simulacion,(select distancia(punto_inicio_x,punto_final_x,punto_inicio_Y,punto_final_Y) as distancia from simulacion) d
+-- llamado funcion distancia y velocidad --
+select distancia()  distancia, velocidad()  velocidad, dias_duracion() dias_duracion, dias_duracion() dias_duracion
