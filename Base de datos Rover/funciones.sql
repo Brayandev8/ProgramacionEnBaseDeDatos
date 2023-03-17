@@ -51,3 +51,14 @@ BEGIN
     RETURN pesoF;
 END;
 //
+-- Codigo de la funcion de Lizeth --
+delimiter // 
+create function edad (fecha_nacimiento date) returns int
+deterministic
+begin 
+    declare edad int;
+    select year(now()) - year(fecha_nacimiento) into edad;
+    return edad;
+
+end //
+delimiter ;
