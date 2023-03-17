@@ -39,3 +39,15 @@ BEGIN
     RETURN vel;
 END
 //
+-- Codigo de la funcion de Deiver --
+DELIMITER //
+CREATE FUNCTION calcularPesoRover(id_estructura INT, id_rueda INT) RETURNS float
+    DETERMINISTIC
+BEGIN
+	DECLARE pesoE, pesoR, pesoF FLOAT;
+    SET pesoE = (SELECT peso FROM estructura WHERE id = id_estructura);
+    SET pesoR = (SELECT peso FROM rueda WHERE id = id_rueda);
+	SET pesoF = ROUND(pesoE + pesoR,2);
+    RETURN pesoF;
+END;
+//
